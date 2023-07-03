@@ -1,0 +1,36 @@
+Execution context refers to the environment in which JavaScript code is executed. It contains the variables, functions, and objects that a piece of code has access to at any given time. Each time a function is called, a new execution context is created, forming a stack of execution contexts called the "call stack".
+
+An execution context consists of three main components:
+
+1. Variable Environment: This component stores the declared variables and functions within the current scope. It includes function arguments, variables declared using the `var` keyword, and function declarations. The variable environment also holds a reference to its outer (parent) environment, forming a chain known as the "scope chain".
+
+2. Lexical Environment: Similar to the variable environment, the lexical environment stores identifiers and their corresponding values. However, it is immutable and does not change at runtime. It is static and represents the variables at the time of creation of the execution context.
+
+3. This Keyword: The `this` keyword refers to the object that the current code is being executed within. It depends on how a function is called and can have different values in different execution contexts.
+
+Here is a diagram illustrating the relationship between execution contexts, scope chain, and the call stack:
+
+```
+-------------------------------------------------------------------------------
+|                                 Global Execution Context                  |
+|-------|-------------------------------------------------------------------|
+|       |                                                                   |
+|       |                                                                   |
+|  EC1  |                                                                   |
+|       |                                                                   |
+|-------|------------------|-----------------------|------------------------|
+|                       |                        |                         |
+|      Inner EC1       |      Inner EC2         |        Inner EC3        |
+|                       |                        |                         |
+|-----------------------|------------------------|-------------------------|
+```
+
+In this diagram, the first box represents the global execution context, which is created when the script is first loaded. This is the outermost context that contains variables and functions defined outside of any function.
+
+Inside the global execution context, there can be multiple inner execution contexts, indicated by EC1, EC2, and EC3. Each inner execution context is created when a function is called, and they form a stack known as the call stack.
+
+The inner execution contexts have their own variable environments, which include local variables and function declarations. They also have a link to their outer environment, forming the scope chain. This chain allows inner environments to access variables from outer environments.
+
+When a function is called, its execution context is created and pushed onto the call stack. Once the function completes, its execution context is popped off the stack, and the control returns to the previous execution context.
+
+This concept of execution context helps in managing variables, scope, and function calls. It also allows for lexical scoping, where variables are accessible within their defined scope and any nested scopes.
